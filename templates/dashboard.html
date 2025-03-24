@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Anonymous Messaging{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Your Anonymous Link</h5>
+            </div>
+            <div class="card-body">
+                <p>Share this link to receive anonymous messages:</p>
+                <div class="share-link mb-3">
+                    <code id="share-link">{{ share_link }}</code>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary copy-btn" onclick="copyToClipboard('{{ share_link }}')">
+                        Copy Link
+                    </button>
+                    <a href="{{ url_for('regenerate_link') }}" class="btn btn-outline-danger" 
+                       onclick="return confirm('Are you sure? Your old link will no longer work.')">
+                        Regenerate Link
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Stats</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>Total Messages:</span>
+                    <span class="badge bg-primary rounded-pill">{{ messages|length }}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>Unread Messages:</span>
+                    <span class="badge bg-danger rounded-pill">{{ unread_count }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Your Messages</h5>
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="card message-card {% if not message.read %}unread{% endif %}">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    {{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                                    {% if not message.read %}
+                                        <span class="badge bg-danger ms-2">New</span>
+                                    {% endif %}
+                                </h6>
+                                <p class="card-text">
+                                    {% if message.content|length > 100 %}
+                                        {{ message.content[:100] }}...
+                                    {% else %}
+                                        {{ message.content }}
+                                    {% endif %}
+                                </p>
+                                <a href="{{ url_for('view_message', message_id=message.id) }}" class="btn btn-sm btn-outline-primary">
+                                    Read Full Message
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-5">
+                        <h5>No messages yet</h5>
+                        <p class="text-muted">Share your anonymous link to start receiving messages</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

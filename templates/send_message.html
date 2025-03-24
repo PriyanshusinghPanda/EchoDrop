@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Send Anonymous Message{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Send Anonymous Message to {{ username }}</h4>
+            </div>
+            <div class="card-body">
+                <p class="lead text-center mb-4">
+                    Your message will be completely anonymous. {{ username }} will not know who sent it.
+                </p>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Send Anonymous Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

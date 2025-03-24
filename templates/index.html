@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Anonymous Messaging - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-body text-center">
+                <h1 class="card-title mb-4">Welcome to Anonymous Messenger</h1>
+                <p class="lead">
+                    Receive anonymous messages from anyone without revealing their identity.
+                </p>
+                <hr>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">How it works</h5>
+                                <ol class="text-start">
+                                    <li>Create an account</li>
+                                    <li>Get your unique anonymous link</li>
+                                    <li>Share your link with friends</li>
+                                    <li>Receive anonymous messages</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Features</h5>
+                                <ul class="text-start">
+                                    <li>100% anonymous messaging</li>
+                                    <li>Regenerate your link anytime</li>
+                                    <li>Track read/unread messages</li>
+                                    <li>Simple and secure</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+                    {% else %}
+                        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-2">Get Started</a>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
