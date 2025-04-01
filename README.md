@@ -91,8 +91,8 @@ This project is licensed under the MIT License.
 
 ## **🔗 Connect With Me**
 📧 Email: *priyanshusinghpanda2005@gmail.com*  
-💻 LinkedIn: [Your LinkedIn]((https://www.linkedin.com/in/priyanshu-singh-4441982bb/))  
-🔗 GitHub: [PriyanshusinghPanda]((https://github.com/PriyanshusinghPanda))
+💻 LinkedIn: https://www.linkedin.com/in/priyanshu-singh-4441982bb/  
+🔗 GitHub: https://github.com/PriyanshusinghPanda
 
 ---
 
